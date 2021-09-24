@@ -9,7 +9,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { BarChartComponent } from './component/bar-chart/bar-chart.component';
 import { CustomDashboardComponent } from './component/custom-dashboard/custom-dashboard.component';
 import { CustomBarChartComponent } from './component/custom-bar-chart/custom-bar-chart.component';
-import { HorizontalBarChartSubComponent } from './component/custom-bar-chart/horizontal-bar-chart.component';
+import { HorizontalBarChartComponent } from './component/util/horizontal-bar-chart/horizontal-bar-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +17,7 @@ import { HorizontalBarChartSubComponent } from './component/custom-bar-chart/hor
     BarChartComponent,
     CustomDashboardComponent,
     CustomBarChartComponent,
-    HorizontalBarChartSubComponent,
+    HorizontalBarChartComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, NgxChartsModule],
   providers: [],
