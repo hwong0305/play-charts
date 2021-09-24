@@ -1,0 +1,11 @@
+<svg:text
+  class="textDataLabel"
+  [class.flip]="data.type === 'Data Collector'"
+  alignment-baseline="middle"
+  [attr.text-anchor]="textAnchor"
+  [attr.transform]="transform"
+  [attr.x]="x"
+  [attr.y]="y"
+>
+  {{ formatedValue }}
+</svg:text>

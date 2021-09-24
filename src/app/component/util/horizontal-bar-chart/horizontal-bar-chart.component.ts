@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,10 +26,21 @@ import {
 } from '@swimlane/ngx-charts';
 
 @Component({
-  selector: 'app-horizontal-bar-chart',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'g[ngx-horizontal-chart]',
   templateUrl: './horizontal-bar-chart.component.html',
   styleUrls: ['./horizontal-bar-chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('animationState', [
+      transition(':leave', [
+        style({
+          opacity: 1,
+        }),
+        animate(500, style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class HorizontalBarChartComponent implements OnChanges {
   @Input() dims: ViewDimensions;
@@ -57,12 +69,25 @@ export class HorizontalBarChartComponent implements OnChanges {
   tooltipPlacement: PlacementTypes;
   tooltipType: StyleTypes;
   bars: Bar[];
-  barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string }> = [];
+  barType: string;
+  barsForDataLabels: Array<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    total: number;
+    series: string;
+    data?: any;
+  }> = [];
 
   barOrientation = BarOrientation;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();
+  }
+
+  ngOnInit() {
+    console.log('series', this.series);
   }
 
   update(): void {
@@ -135,6 +160,7 @@ export class HorizontalBarChartComponent implements OnChanges {
         value = (offset1 - offset0).toFixed(2) + '%';
       }
 
+      /*
       if (this.colors.scaleType === ScaleType.Ordinal) {
         bar.color = this.colors.getColor(label);
       } else {
@@ -146,6 +172,9 @@ export class HorizontalBarChartComponent implements OnChanges {
           bar.gradientStops = this.colors.getLinearGradientStops(bar.offset1, bar.offset0);
         }
       }
+      */
+
+      bar.color = d.extra.type === 'Data Collector' ? 'rgb(168, 56, 93)' : 'rgb(162, 126, 168)';
 
       let tooltipLabel = formattedLabel;
       bar.ariaLabel = formattedLabel + ' ' + value.toLocaleString();
@@ -197,6 +226,7 @@ export class HorizontalBarChartComponent implements OnChanges {
         section.y = this.yScale(d.label);
         section.width = this.xScale(section.total) - this.xScale(0);
         section.height = this.yScale.bandwidth();
+        section.data = d.extra;
         return section;
       });
     }

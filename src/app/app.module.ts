@@ -10,6 +10,7 @@ import { BarChartComponent } from './component/bar-chart/bar-chart.component';
 import { CustomDashboardComponent } from './component/custom-dashboard/custom-dashboard.component';
 import { CustomBarChartComponent } from './component/custom-bar-chart/custom-bar-chart.component';
 import { HorizontalBarChartComponent } from './component/util/horizontal-bar-chart/horizontal-bar-chart.component';
+import { ChartLabelComponent } from './component/util/chart-label/chart-label.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { HorizontalBarChartComponent } from './component/util/horizontal-bar-cha
     CustomDashboardComponent,
     CustomBarChartComponent,
     HorizontalBarChartComponent,
+    ChartLabelComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, NgxChartsModule],
   providers: [],
